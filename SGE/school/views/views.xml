@@ -1,0 +1,74 @@
+<odoo>
+  <data>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="school.action_window_alumno">
+      <field name="name">Student</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    <!-- action asignatura -->
+
+    <record model="ir.actions.act_window" id="school.action_window_asignatura">
+      <field name="name">Asignaturas</field>
+      <field name="res_model">school.subject</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- action teachers -->
+
+    <record model="ir.actions.act_window" id="school.action_window_profesor">
+      <field name="name">Profesores</field>
+      <field name="res_model">school.teacher</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- action course -->
+
+    <record model="ir.actions.act_window" id="school.action_window_curso">
+      <field name="name">Cursos</field>
+      <field name="res_model">school.course</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+        <!-- action notas -->
+
+    <record model="ir.actions.act_window" id="school.action_window_nota">
+      <field name="name">Notas</field>
+      <field name="res_model">school.note</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Escuela" id="school.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Alumnos" id="school.menu_alumno" parent="school.menu_root"/>
+    <menuitem name="Administracion" id="school.menu_Administracion" parent="school.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Lista de alumnos" id="school.menu_alumno_list" parent="school.menu_Administracion"
+              action="school.action_window_alumno"/>
+
+    <menuitem name="Lista de asignaturas" id="school.menu_asignatura_list" parent="school.menu_Administracion"
+              action="school.action_window_asignatura"/>
+
+    <menuitem name="Lista de profesores" id="school.menu_profesor_list" parent="school.menu_Administracion"
+              action="school.action_window_profesor"/>
+
+    <menuitem name="Lista de cursos" id="school.menu_profesor_list" parent="school.menu_Administracion"
+              action="school.action_window_curso"/>
+
+    <menuitem name="Lista de notas" id="school.menu_notas_list" parent="school.menu_Administracion"
+              action="school.action_window_nota"/>
+
+  </data>
+</odoo>

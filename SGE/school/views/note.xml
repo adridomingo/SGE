@@ -1,0 +1,20 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="school.note_list">
+      <field name="name">Notas</field>
+      <field name="model">school.note</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="note"/>
+          <field name="subject_id"/>
+          <field name="student_id"/>
+
+        </list>
+      </field>
+    </record>
+
+
+  </data>
+</odoo>

@@ -1,0 +1,19 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="school.course_list">
+      <field name="name">Cursos</field>
+      <field name="model">school.course</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="subject_id"/>
+          
+        </list>
+      </field>
+    </record>
+
+
+  </data>
+</odoo>

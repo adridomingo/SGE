@@ -1,0 +1,102 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="school.student_list">
+      <field name="name">school list</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <list decoration-warning="age&gt;18" decoration-success="age&lt;18">
+          <field name="name"/>
+          <field name="surname"/>
+          <field name="age" avg="Media de edad"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="school.student_form">
+      <field name="name">school student list</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <form>
+        <header>
+          <div class="oe_button_box">
+            <button name="regenerar" class="oe_stat_button" type="object" icon="fa-address-book"
+              string="Regenerar password">
+            </button>
+          </div>
+          <field name="state" widget="statusbar"/>
+        </header>
+          <group>
+          <group>
+            <separator class="text-muted" string="datos personales"></separator>
+            <field name="name" string="Nombre"/>
+            <field name="surname"/>
+            <field name="birthday"/>
+            <field name="country_id"/>
+            <field name="province"/>
+            <field name="dni"/>
+            <field name="state"/>
+          </group>
+          <group invisible="state&lt;'2'">
+            <separator string="Otros datos personales"></separator>
+            <field name="age"/>
+            <field name="course_id"/>
+            <!-- <field name="subject_ids" widget='many2many_tags'/>
+            <field name="subject_ids" domain="[('course_id','=', course_id)]"/> -->
+              <!-- <list>
+                <field name="name"/>
+                <field name="course_id"/>
+                <field name="level_course"/>
+              </list>
+            </field> -->
+            
+            <field name="password"/>
+            <field name="image" widget="image"/>
+          </group>
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="school.student_kanban">
+      <field name="name">school kanban</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <template>
+            <!-- <t t-name="kanban-box"> -->
+            <t t-name="kanban-box" class="flex-row">
+              <a type="open">
+                <img class="o_image_64_contain"
+                      t-att-alt="record.name.value"
+                      t-att-src="kanban_image('school.student', 'image',
+                      record.id.raw_value)"/>
+              </a>
+              <div class="oe_product_desc">
+                <h4>
+                  <a type="edit">
+                    <field name="name"/><field name="surname"/>
+                  </a>
+                </h4>
+                <field name="dni"/>
+                <br/>
+                <field name="state"/>
+                <br/>
+                <field name="name"/>
+                <br/>
+                <field name="surname"/>
+                <br/>
+                <field name="age"/>
+                <field name="note_ids"/>
+                
+
+              </div>
+            </t>
+          </template>
+        </kanban>
+      </field>
+    </record>
+
+  </data>
+</odoo>
