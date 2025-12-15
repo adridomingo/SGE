@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record id="hospital.diagnostico" model="ir.ui.view">
+            <field name="name">Diagnosticos</field>
+            <field name="model">hospital.diagnostico</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="diagnostico"/>
+                    <field name="fecha"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="hospital_diagnostico_graph" model="ir.ui.view">
+            <field name="name">hospital.diagnostico.graph</field>
+            <field name="model">hospital.diagnostico</field>
+            <field name="arch" type="xml">
+                <graph
+                    string="Diagnósticos por médico"
+                    type="bar">
+                    <field name="medico_id" type="row"/>
+                    <field name="id" type="measure"/>
+                </graph>
+            </field>
+        </record>
+    </data>
+</odoo>

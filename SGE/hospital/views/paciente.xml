@@ -1,0 +1,70 @@
+<odoo>
+    <data>
+        <record id="hospital.paciente" model="ir.ui.view">
+            <field name="name">Pacientes</field>
+            <field name="model">hospital.paciente</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="surname"/>
+                    <field name="telefono"/>
+                    <field name="birthday"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="hospital_paciente_form" model="ir.ui.view">
+            <field name="name">hospital.paciente.form</field>
+            <field name="model">hospital.paciente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="surname"/>
+                            <field name="birthday"/>
+                        </group>
+                        <group>
+                            <field name="telefono"/>
+                            <field name="direccion"/>
+                            <field name="poblacion"/>
+                            <field name="provincia"/>
+                            <field name="postal"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="ingreso_id">
+                            <list>
+                                <field name="medico_id"/>
+                                <field name="fechaIngreso"/>
+                                <field name="fechaAlta"/>
+                                <field name="habitacion"/>
+                                <field name="cama"/>
+                            </list>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_paciente_search" model="ir.ui.view">
+            <field name="name">hospital.paciente.search</field>
+            <field name="model">hospital.paciente</field>
+            <field name="arch" type="xml">
+                <search string="Buscar pacientes">
+                    <filter
+                        string="Actualmente ingresados"
+                        name="ingresados"
+                        domain="[('ingreso_id.active','=',True)]"/>
+
+                    <filter
+                        string="No ingresados"
+                        name="no_ingresados"
+                        domain="[('ingreso_id.active','=',False)]"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

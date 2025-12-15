@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+
+        <record id="hospital.ingreso.search" model="ir.ui.view">
+            <field name="name">hospital.ingreso.search</field>
+            <field name="model">hospital.ingreso</field>
+            <field name="arch" type="xml">
+                <search string="Buscar ingresos">
+                    <filter
+                        string="Habitaciones libres"
+                        name="libres"
+                        domain="[('active','=',False)]"/>
+
+                    <filter
+                        string="Habitaciones ocupadas"
+                        name="ocupadas"
+                        domain="[('active','=',True)]"/>
+
+                    <group expand="0" string="Agrupar por">
+                        <filter string="Habitación" context="{'group_by':'habitacion'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="hospital.ingreso" model="ir.ui.view">
+            <field name="name">Ingresos</field>
+            <field name="model">hospital.ingreso</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="habitacion"/>
+                    <field name="cama"/>
+                    <field name="fechaIngreso"/>
+                    <field name="fechaAlta"/>
+                    <field name="sintomas"/>
+                    <field name="active"/>
+                    <field name="diasIngresado"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="hospital_ingreso_calendar" model="ir.ui.view">
+            <field name="name">hospital.ingreso.calendar</field>
+            <field name="model">hospital.ingreso</field>
+            <field name="arch" type="xml">
+                <calendar
+                    string="Ocupación de habitaciones"
+                    date_start="fechaIngreso"
+                    date_stop="fechaAlta"
+                    color="habitacion">
+                    <field name="paciente_id"/>
+                    <field name="habitacion"/>
+                    <field name="cama"/>
+                </calendar>
+            </field>
+        </record>
+
+    </data>
+</odoo>

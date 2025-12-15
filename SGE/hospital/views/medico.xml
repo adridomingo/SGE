@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+
+        <record id="hospital.medico" model="ir.ui.view">
+            <field name="name">Medicos</field>
+            <field name="model">hospital.medico</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="surname"/>
+                    <field name="telefono"/>
+                    <field name="especialidad"/>
+                    <field name="numero"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="hospital_medico_kanban" model="ir.ui.view">
+            <field name="name">hospital.medico.kanban</field>
+            <field name="model">hospital.medico</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="surname"/>
+                    <field name="telefono"/>
+                    <field name="especialidad"/>
+                    <field name="numero"/>
+                    <field name="image"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('hospital.medico','image_1920', record.id.raw_value)"/>
+                                </div>
+                                <strong>
+                                    <field name="name"/> <field name="surname"/>
+                                </strong>
+                                <div>
+                                    <field name="especialidad"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
+</odoo>

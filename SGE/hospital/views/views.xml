@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="hospital.action_window_paciente">
+      <field name="name">Pacientes</field>
+      <field name="res_model">hospital.paciente</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hospital.action_window_medico">
+      <field name="name">Médicos</field>
+      <field name="res_model">hospital.medico</field>
+      <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hospital.action_window_ingreso">
+      <field name="name">Ingresos</field>
+      <field name="res_model">hospital.ingreso</field>
+      <field name="view_mode">list,form,calendar,search</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hospital.action_window_diagnostico">
+      <field name="name">Diagnósticos</field>
+      <field name="res_model">hospital.diagnostico</field>
+      <field name="view_mode">list,form,graph</field>
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Hospital" id="hospital.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Pacientes" id="hospital.menu_paciente" parent="hospital.menu_root"/>
+    <menuitem name="Administración" id="hospital.menu_administracion" parent="hospital.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="Lista de pacientes"
+              id="hospital.menu_paciente_list"
+              parent="hospital.menu_administracion"
+              action="hospital.action_window_paciente"/>
+
+    <menuitem name="Lista de médicos"
+              id="hospital.menu_medico_list"
+              parent="hospital.menu_administracion"
+              action="hospital.action_window_medico"/>
+
+    <menuitem name="Lista de ingresos"
+              id="hospital.menu_ingreso_list"
+              parent="hospital.menu_administracion"
+              action="hospital.action_window_ingreso"/>
+
+    <menuitem name="Lista de diagnósticos"
+              id="hospital.menu_diagnostico_list"
+              parent="hospital.menu_administracion"
+              action="hospital.action_window_diagnostico"/>
+
+  </data>
+</odoo>
+

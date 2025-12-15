@@ -1,0 +1,184 @@
+<odoo>
+
+    <!-- ================= -->
+    <!-- MÉDICOS (5) -->
+    <!-- ================= -->
+    <record id="medico_1" model="hospital.medico">
+        <field name="name">Juan</field>
+        <field name="surname">Pérez</field>
+        <field name="telefono">600111111</field>
+        <field name="especialidad">Cardiología</field>
+        <field name="numero">1001</field>
+    </record>
+
+    <record id="medico_2" model="hospital.medico">
+        <field name="name">Ana</field>
+        <field name="surname">López</field>
+        <field name="telefono">600222222</field>
+        <field name="especialidad">Neurología</field>
+        <field name="numero">1002</field>
+    </record>
+
+    <record id="medico_3" model="hospital.medico">
+        <field name="name">Carlos</field>
+        <field name="surname">Gómez</field>
+        <field name="telefono">600333333</field>
+        <field name="especialidad">Traumatología</field>
+        <field name="numero">1003</field>
+    </record>
+
+    <record id="medico_4" model="hospital.medico">
+        <field name="name">Laura</field>
+        <field name="surname">Martín</field>
+        <field name="telefono">600444444</field>
+        <field name="especialidad">Pediatría</field>
+        <field name="numero">1004</field>
+    </record>
+
+    <record id="medico_5" model="hospital.medico">
+        <field name="name">Pedro</field>
+        <field name="surname">Ruiz</field>
+        <field name="telefono">600555555</field>
+        <field name="especialidad">Medicina Interna</field>
+        <field name="numero">1005</field>
+    </record>
+
+    <!-- ================= -->
+    <!-- PACIENTES (5) -->
+    <!-- ================= -->
+    <record id="paciente_1" model="hospital.paciente">
+        <field name="name">María</field>
+        <field name="surname">Sánchez</field>
+        <field name="direccion">Calle Mayor 1</field>
+        <field name="poblacion">Madrid</field>
+        <field name="provincia">Madrid</field>
+        <field name="postal">28001</field>
+        <field name="telefono">611111111</field>
+        <field name="medico_id" ref="medico_1"/>
+    </record>
+
+    <record id="paciente_2" model="hospital.paciente">
+        <field name="name">Luis</field>
+        <field name="surname">Fernández</field>
+        <field name="direccion">Avda Sol 12</field>
+        <field name="poblacion">Sevilla</field>
+        <field name="provincia">Sevilla</field>
+        <field name="postal">41001</field>
+        <field name="telefono">622222222</field>
+        <field name="medico_id" ref="medico_2"/>
+    </record>
+
+    <record id="paciente_3" model="hospital.paciente">
+        <field name="name">Elena</field>
+        <field name="surname">Torres</field>
+        <field name="direccion">C/ Luna 5</field>
+        <field name="poblacion">Valencia</field>
+        <field name="provincia">Valencia</field>
+        <field name="postal">46001</field>
+        <field name="telefono">633333333</field>
+        <field name="medico_id" ref="medico_3"/>
+    </record>
+
+    <record id="paciente_4" model="hospital.paciente">
+        <field name="name">Jorge</field>
+        <field name="surname">Moreno</field>
+        <field name="direccion">Plaza Norte 3</field>
+        <field name="poblacion">Bilbao</field>
+        <field name="provincia">Bizkaia</field>
+        <field name="postal">48001</field>
+        <field name="telefono">644444444</field>
+        <field name="medico_id" ref="medico_4"/>
+    </record>
+
+    <record id="paciente_5" model="hospital.paciente">
+        <field name="name">Sara</field>
+        <field name="surname">Vega</field>
+        <field name="direccion">C/ Sur 8</field>
+        <field name="poblacion">Granada</field>
+        <field name="provincia">Granada</field>
+        <field name="postal">18001</field>
+        <field name="telefono">655555555</field>
+        <field name="medico_id" ref="medico_5"/>
+    </record>
+
+    <!-- ================= -->
+    <!-- INGRESOS (5) -->
+    <!-- ================= -->
+    <record id="ingreso_1" model="hospital.ingreso">
+        <field name="habitacion">101</field>
+        <field name="cama">1</field>
+        <field name="sintomas">Dolor en el pecho</field>
+        <field name="medico_id" ref="medico_1"/>
+        <field name="paciente_id" ref="paciente_1"/>
+    </record>
+
+    <record id="ingreso_2" model="hospital.ingreso">
+        <field name="habitacion">102</field>
+        <field name="cama">1</field>
+        <field name="sintomas">Migrañas intensas</field>
+        <field name="medico_id" ref="medico_2"/>
+        <field name="paciente_id" ref="paciente_2"/>
+    </record>
+
+    <record id="ingreso_3" model="hospital.ingreso">
+        <field name="habitacion">103</field>
+        <field name="cama">1</field>
+        <field name="sintomas">Fractura de pierna</field>
+        <field name="medico_id" ref="medico_3"/>
+        <field name="paciente_id" ref="paciente_3"/>
+    </record>
+
+    <record id="ingreso_4" model="hospital.ingreso">
+        <field name="habitacion">104</field>
+        <field name="cama">1</field>
+        <field name="sintomas">Fiebre alta</field>
+        <field name="medico_id" ref="medico_4"/>
+        <field name="paciente_id" ref="paciente_4"/>
+    </record>
+
+    <record id="ingreso_5" model="hospital.ingreso">
+        <field name="habitacion">105</field>
+        <field name="cama">1</field>
+        <field name="sintomas">Dolor abdominal</field>
+        <field name="medico_id" ref="medico_5"/>
+        <field name="paciente_id" ref="paciente_5"/>
+    </record>
+
+    <!-- ================= -->
+    <!-- DIAGNÓSTICOS (5) -->
+    <!-- ================= -->
+    <record id="diagnostico_1" model="hospital.diagnostico">
+        <field name="diagnostico">Angina de pecho</field>
+        <field name="medico_id" ref="medico_1"/>
+        <field name="paciente_id" ref="paciente_1"/>
+        <field name="ingreso_id" ref="ingreso_1"/>
+    </record>
+
+    <record id="diagnostico_2" model="hospital.diagnostico">
+        <field name="diagnostico">Migraña crónica</field>
+        <field name="medico_id" ref="medico_2"/>
+        <field name="paciente_id" ref="paciente_2"/>
+        <field name="ingreso_id" ref="ingreso_2"/>
+    </record>
+
+    <record id="diagnostico_3" model="hospital.diagnostico">
+        <field name="diagnostico">Fractura de fémur</field>
+        <field name="medico_id" ref="medico_3"/>
+        <field name="paciente_id" ref="paciente_3"/>
+        <field name="ingreso_id" ref="ingreso_3"/>
+    </record>
+
+    <record id="diagnostico_4" model="hospital.diagnostico">
+        <field name="diagnostico">Infección viral</field>
+        <field name="medico_id" ref="medico_4"/>
+        <field name="paciente_id" ref="paciente_4"/>
+        <field name="ingreso_id" ref="ingreso_4"/>
+    </record>
+
+    <record id="diagnostico_5" model="hospital.diagnostico">
+        <field name="diagnostico">Gastritis</field>
+        <field name="medico_id" ref="medico_5"/>
+        <field name="paciente_id" ref="paciente_5"/>
+        <field name="ingreso_id" ref="ingreso_5"/>
+    </record>
+</odoo>
