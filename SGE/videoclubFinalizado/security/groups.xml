@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Seccion para los roles -->
+        <record id="module_category_videoclub" model="ir.module.category">
+            <field name="name">Videoclub</field>
+        </record>
+
+        <!-- Empleado -->
+        <record id="empleado" model="res.groups">
+            <field name="name">Empleado</field>
+            <field name="category_id" ref="module_category_videoclub"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        </record>
+
+        <!-- Dependiente -->
+        <record id="dependiente" model="res.groups">
+            <field name="name">Dependiente</field>
+            <field name="category_id" ref="module_category_videoclub"/>
+        </record>
+
+        <!-- Administrador -->
+        <record id="admin" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="category_id" ref="module_category_videoclub"/>
+        </record>
+    </data>
+</odoo>

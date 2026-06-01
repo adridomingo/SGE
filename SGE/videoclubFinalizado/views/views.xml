@@ -1,0 +1,77 @@
+<odoo>
+  <data>
+    <!-- Actions -->
+    <!-- Pelicula -->
+    <record model="ir.actions.act_window" id="videoclub.action_window_pelicula">
+      <field name="name">Peliculas</field>
+      <field name="res_model">videoclub.pelicula</field>
+      <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <!-- Categoria -->
+    <record model="ir.actions.act_window" id="videoclub.action_window_categoria">
+      <field name="name">Categorias</field>
+      <field name="res_model">videoclub.categoria</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Actor -->
+    <record model="ir.actions.act_window" id="videoclub.action_window_actor">
+      <field name="name">Actores</field>
+      <field name="res_model">videoclub.actor</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Cliente -->
+    <record model="ir.actions.act_window" id="videoclub.action_window_cliente">
+      <field name="name">Clientes</field>
+      <field name="res_model">videoclub.cliente</field>
+      <field name="view_mode">list,form,activity</field>
+    </record>
+
+    <!-- Alquiler -->
+    <record model="ir.actions.act_window" id="videoclub.action_window_alquiler">
+      <field name="name">Alquileres</field>
+      <field name="res_model">videoclub.alquiler</field>
+      <field name="view_mode">list,form,graph,pivot</field>
+    </record>
+
+    <!-- Incidencia -->
+    <record model="ir.actions.act_window" id="videoclub.action_window_incidencia">
+        <field name="name">Incidencias</field>
+        <field name="res_model">videoclub.incidencia</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Categoria padre del menu -->
+    <menuitem name="videoclub" id="videoclub.menu_root"/>
+
+    <!-- Categorias del menu -->
+    <!-- <menuitem id="menu_peliculas" name="Películas" parent="videoclub.menu_root"/>
+    <menuitem id="menu_categorias" name="Categorias" parent="videoclub.menu_root"/>
+    <menuitem id="menu_actores" name="Actores" parent="videoclub.menu_root"/>
+    <menuitem id="menu_clientes" name="Clientes" parent="videoclub.menu_root"/>
+    <menuitem id="menu_alquileres" name="Alquileres" parent="videoclub.menu_root"/>
+    <menuitem id="menu_incidencias" name="Incidencias" parent="videoclub.menu_root"/> -->
+
+    <!-- Items del menu -->
+    <menuitem name="Listado de peliculas" id="videoclub.menu_pelicula_list" parent="videoclub.menu_root"
+              action="videoclub.action_window_pelicula"/>
+
+    <menuitem name="Listado de categorias" id="videoclub.menu_categoria_list" parent="videoclub.menu_root"
+              action="videoclub.action_window_categoria"/>
+
+    <menuitem name="Listado de actores" id="videoclub.menu_actor_list" parent="videoclub.menu_root"
+              action="videoclub.action_window_actor"/>
+
+    <menuitem name="Listado de clientes" id="videoclub.menu_cliente_list" parent="videoclub.menu_root"
+              action="videoclub.action_window_cliente"/>
+
+    <menuitem name="Listado de alquileres" id="videoclub.menu_alquiler_list" parent="videoclub.menu_root"
+              action="videoclub.action_window_alquiler"/>
+
+    <menuitem name="Listado de incidencias" id="videoclub.menu_incidencia_list" parent="videoclub.menu_root"
+              action="videoclub.action_window_incidencia"/>       
+
+  </data>
+</odoo>

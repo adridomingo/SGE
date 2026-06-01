@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="videoclub.incidencia_list" model="ir.ui.view">
+            <field name="name">Videoclub Incidencias</field>
+            <field name="model">videoclub.incidencia</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="fecha"/>
+                    <field name="gravedad" widget="badge"
+                        decoration-success="gravedad == 'baja'"
+                        decoration-warning="gravedad == 'media'"
+                        decoration-danger="gravedad == 'alta'"
+                    />
+                    <field name="resuelta" widget="boolean_toggle"/>
+                    <field name="alquiler_id"/>
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>

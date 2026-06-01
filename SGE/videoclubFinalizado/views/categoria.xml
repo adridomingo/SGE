@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="videoclub.categoria_list" model="ir.ui.view">
+            <field name="name">Videoclub Categorías</field>
+            <field name="model">videoclub.categoria</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="descripcion"/>
+                    <field name="pelicula_ids"/>
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>

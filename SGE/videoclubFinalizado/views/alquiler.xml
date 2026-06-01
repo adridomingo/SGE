@@ -1,0 +1,160 @@
+<odoo>
+    <data>
+    <!-- LISTA -->
+        <record id="videoclub.alquiler_list" model="ir.ui.view">
+            <field name="name">Videoclub Alquileres</field>
+            <field name="model">videoclub.alquiler</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="cliente_id"/>
+                    <field name="cliente_email"/>
+                    <field name="pelicula_id"/>
+                    <field name="documento_ref"/>
+                    <field name="fecha_alquiler"/>
+                    <field name="fecha_devolucion"/>
+                    <field name="dias_alquiler"/>
+                    <field name="estado"/>
+                </list>
+            </field>
+        </record>
+
+    <!-- FORMULARIO -->
+        <record id="videoclub.alquiler_form" model="ir.ui.view">
+            <field name="name">Formulario de Alquiler</field>
+            <field name="model">videoclub.alquiler</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!-- Btn devolver -->
+                        <button name="action_devolver"
+                                string="Marcar como devuelto"
+                                type="object"
+                                class="btn-primary"
+                                invisible="estado == 'devuelto'"/>
+                        <!-- Btn de reabrir formulario -->
+                        <button name="action_reabrir"
+                                string="Reabrir alquiler"
+                                type="object"
+                                invisible="estado == 'alquilado'"/>
+                        <!-- Status bar de alquilado o devuelto -->
+                        <field name="estado" widget="statusbar"
+                               statusbar_visible="alquilado,devuelto"/>
+                    </header>
+
+                    <sheet>
+                        <group string="Datos del alquiler">
+                            <group>
+                                <!-- Solo muestra clientes con email -->
+                                <field name="cliente_id"
+                                       domain="[('email', '!=', False)]"/>
+                                <field name="cliente_email" widget="email"/>
+                            </group>
+                            <group>
+                                <!-- Solo muestra peliculas disponibles -->
+                                <field name="pelicula_id"
+                                       domain="[('disponible', '=', True)]"/>
+                            </group>
+                        </group>
+
+                        <group string="Fechas">
+                            <group>
+                                <field name="fecha_alquiler" widget="date"/>
+                                <field name="fecha_devolucion" widget="date"
+                                       invisible="estado == 'alquilado'"/>
+                            </group>
+                            <group>
+                                <!-- Este campo solo se ve si hay fecha de devolucion, si ya esta devuelto -->
+                                <field name="dias_alquiler"
+                                       invisible="fecha_devolucion == False"/>
+                            </group>
+                        </group>
+
+                        <group string="Referencia">
+                            <field name="documento_ref" widget="reference"/>
+                        </group>
+
+                        <!-- Esta seccion solo aparece si ya se ha devuelto -->
+                        <group string="Incidencias" invisible="estado == 'alquilado'">
+                            <field name="incidencia_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="fecha"/>
+                                    <field name="gravedad"
+                                        widget="badge"
+                                        decoration-success="gravedad == 'baja'"
+                                        decoration-warning="gravedad == 'media'"
+                                        decoration-danger="gravedad == 'alta'"/>
+                                    <field name="resuelta" widget="boolean_toggle"/>
+                                </list>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <!-- Search -->
+        <record id="videoclub.alquiler_search" model="ir.ui.view">
+            <field name="name">Busqueda de alquileres</field>
+            <field name="model">videoclub.alquiler</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <!-- Campos por los que se puede buscar -->
+                    <field name="cliente_id"/>
+                    <field name="pelicula_id"/>
+                    <field name="estado"/>
+
+                    <!-- Filtros predefinidos -->
+                    <filter string="Alquilados"
+                            name="filter_alquilados"
+                            domain="[('estado', '=', 'alquilado')]"/>
+                    <filter string="Devueltos"
+                            name="filter_devueltos"
+                            domain="[('estado', '=', 'devuelto')]"/>
+                    <filter string="Con incidencias"
+                            name="filter_incidencias"
+                            domain="[('incidencia_ids', '!=', False)]"/>
+
+                    <separator/>
+
+                    <!-- Agrupaciones -->
+                    <group expand="1" string="Agrupar por">
+                        <filter string="Cliente"
+                                name="group_cliente"
+                                context="{'group_by': 'cliente_id'}"/>
+                        <filter string="Película"
+                                name="group_pelicula"
+                                context="{'group_by': 'pelicula_id'}"/>
+                        <filter string="Estado"
+                                name="group_estado"
+                                context="{'group_by': 'estado'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    <!-- Graph-->
+        <record id="videoclub.alquiler_graph" model="ir.ui.view">
+            <field name="name">Grafico de Alquileres</field>
+            <field name="model">videoclub.alquiler</field>
+            <field name="arch" type="xml">
+                <graph string="Alquileres por cliente" type="bar" stacked="1">
+                    <field name="cliente_id" type="row"/>
+                    <field name="estado" type="col"/>
+                </graph>
+            </field>
+        </record>
+    <!-- Pivot -->    
+        <record id="videoclub_alquiler_pivot" model="ir.ui.view">
+            <field name="name">Pivot de Alquileres</field>
+            <field name="model">videoclub.alquiler</field>
+            <field name="arch" type="xml">
+                <pivot string="Análisis de alquileres">
+                    <field name="cliente_id" type="row"/>
+                    <field name="pelicula_id" type="col"/>
+                    <field name="contador" type="measure" string="Nº Alquileres"/>
+                </pivot>
+            </field>
+        </record>
+    </data>
+</odoo>

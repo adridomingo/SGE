@@ -1,0 +1,54 @@
+<odoo>
+    <record id="action_report_pelicula" model="ir.actions.report">
+      <field name="name">Ficha de Película</field>
+      <field name="model">videoclub.pelicula</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">videoclub.report_pelicula_template</field>
+      <field name="report_file">videoclub.report_pelicula_template</field>
+      <field name="binding_model_id" ref="model_videoclub_pelicula"/>
+    </record>
+
+    <template id="report_pelicula_template">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+          <t t-call="web.external_layout">
+            <div class="page">
+              <div style="display: flex; gap: 24px; align-items: flex-start;">
+                <!-- Foto -->
+                <div>
+                  <img t-if="doc.imagen"
+                       t-att-src="image_data_uri(doc.imagen)"
+                       style="width: 150px; height: 200px; object-fit: cover; border-radius: 8px;"/>
+                  <div t-else=""
+                       style="width:150px; height:200px; background:#eee;
+                              display:flex; align-items:center; justify-content:center;
+                              border-radius:8px; color:#999;">
+                    Sin imagen
+                  </div>
+                </div>
+                <!-- Datos -->
+                <div>
+                  <h2 style="margin-top:0"><t t-esc="doc.name"/></h2>
+                  <p><strong>Categoría:</strong> <t t-esc="doc.categoria_id.name"/></p>
+                  <p><strong>Año:</strong> <t t-esc="doc.anio"/></p>
+                  <p><strong>Duración:</strong> <t t-esc="doc.duracion"/> min</p>
+                  <p><strong>Disponible:</strong>
+                    <t t-if="doc.disponible">Sí</t>
+                    <t t-else="">No</t>
+                  </p>
+                  <p><strong>Actores:</strong>
+                    <t t-foreach="doc.actor_ids" t-as="actor">
+                      <t t-esc="actor.name"/><t t-if="not actor_last">, </t>
+                    </t>
+                  </p>
+                  <p><strong>Descripción:</strong><br/>
+                    <t t-esc="doc.descripcion"/>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+</odoo>

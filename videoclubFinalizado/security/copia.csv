@@ -1,0 +1,6 @@
+access_pelicula,access_pelicula,model_videoclub_pelicula,base.group_user,1,1,1,1
+access_categoria,access_categoria,model_videoclub_categoria,base.group_user,1,1,1,1
+access_actor,access_actor,model_videoclub_actor,base.group_user,1,1,1,1
+access_cliente,access_cliente,model_videoclub_cliente,base.group_user,1,1,1,1
+access_alquiler,access_alquiler,model_videoclub_alquiler,base.group_user,1,1,1,1
+access_incidencia,access_incidencia,model_videoclub_incidencia,base.group_user,1,1,1,1

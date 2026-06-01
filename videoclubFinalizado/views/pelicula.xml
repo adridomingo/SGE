@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+    <!--Arbol-->
+        <record id="videoclub.pelicula_list" model="ir.ui.view">
+            <field name="name">Videoclub Películas</field>
+            <field name="model">videoclub.pelicula</field>
+            <field name="arch" type="xml">
+                <list decoration-success="disponible == True" decoration-danger="disponible == False">
+                    <field name="name"/>
+                    <field name="anio"/>
+                    <field name="duracion" sum="Duración total"/>
+                    <field name="disponible"/>
+                    <field name="categoria_id"/>
+                </list>
+            </field>
+        </record>
+    <!-- Kanban -->
+        <record model="ir.ui.view" id="videoclub.pelicula_kanban">
+            <field name="name">videoclub pelicula kanban</field>
+            <field name="model">videoclub.pelicula</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <template>
+                        <t t-name="kanban-box">
+                            <a type="open">
+                                <img class="oe_kanban_global_click"
+                                    t-att-alt="record.name.value"
+                                    t-att-src="kanban_image('videoclub.pelicula', 'imagen', record.id.raw_value)"/>
+                            </a>
+                            <div class="oe_product_vignette">
+                                <h4>
+                                    <a type="edit">
+                                        <field name="name"/>
+                                    </a>
+                                </h4>
+                                <field name="categoria_id"/>
+                                <br/>
+                                <field name="anio"/>
+                                <br/>
+                                <field name="duracion"/>
+                                <br/>
+                                <field name="disponible"/>
+                                <br/>
+                                <field name="actor_ids"/>
+                            </div>
+                        </t>
+                    </template>
+                </kanban>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

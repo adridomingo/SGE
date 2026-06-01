@@ -1,0 +1,95 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="videoclub.alquiler_aux_form">
+      <field name="name">Wizard alquiler</field>
+      <field name="model">videoclub.alquiler_aux</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="previous" class="btn btn-oe_highlight" type="object"
+                    string="← Anterior" invisible="state_wizard == '1'"/>
+            <button name="next" class="btn btn-oe_highlight" type="object"
+                    string="Siguiente →" invisible="state_wizard == '4'"/>
+            <field name="state_wizard" widget="statusbar"/>
+          </header>
+
+          <!-- ET1 CLIENTE -->
+          <group string="Cliente" invisible="state_wizard != '1'">
+            <field name="crear_cliente_aux"/>
+            <field name="cliente_id_aux"   invisible="crear_cliente_aux == True"/>
+            <field name="name_cliente_aux"     invisible="crear_cliente_aux == False"/>
+            <field name="email_cliente_aux"    invisible="crear_cliente_aux == False"/>
+            <field name="telefono_cliente_aux" invisible="crear_cliente_aux == False"/>
+          </group>
+
+          <!-- ET2 PELICULA -->
+          <group string="Película" invisible="state_wizard != '2'">
+            <field name="pelicula_id_aux"/>
+            <field name="categoria_aux" readonly="1" invisible="not pelicula_id_aux"/>
+            <field name="anio_aux"      readonly="1" invisible="not pelicula_id_aux"/>
+            <field name="duracion_aux"  readonly="1" invisible="not pelicula_id_aux"/>
+          </group>
+
+          <!-- ET3 INCIDENCIAS -->
+          <group col="4" string="Añadir incidencia" invisible="state_wizard != '3'">
+              <field name="name_incidencia_aux"/>
+              <field name="gravedad_incidencia_aux"/>
+              <button name="add_incidencia" class="btn btn-secondary" type="object"
+                      string="Añadir incidencia"/>
+          </group>
+          <group string="Incidencias añadidas" invisible="state_wizard != '3'">
+              <field name="incidencia_id_aux" nolabel="1">
+                  <list>
+                      <field name="name_aux"/>
+                      <field name="gravedad_aux"/>
+                  </list>
+              </field>
+          </group>
+
+          <!-- ET4 CONFIRMACION -->
+          <group string="Resumen del alquiler" invisible="state_wizard != '4'">
+            <field name="cliente_id_aux"   readonly="1" invisible="crear_cliente_aux == True"/>
+            <field name="name_cliente_aux" readonly="1" invisible="crear_cliente_aux == False"
+                   string="Cliente"/>
+            <field name="pelicula_id_aux"  readonly="1"/>
+            <field name="fecha_alquiler_aux"/>
+            <field name="fecha_devolucion_aux"/>
+          </group>
+          <group string="Incidencias" invisible="state_wizard != '4'">
+              <field name="incidencia_id_aux" nolabel="1">
+                  <list>
+                      <field name="name_aux"/>
+                      <field name="gravedad_aux"/>
+                  </list>
+              </field>
+          </group>
+
+          <footer>
+            <button name="create_alquiler" type="object"
+                    string="Crear alquiler" class="oe_highlight"
+                    invisible="state_wizard != '4'"/>
+            <button special="cancel" string="Cancelar"/>
+          </footer>
+
+        </form>
+      </field>
+    </record>
+
+    <!-- ACCION -->
+    <record id="action_alquiler_aux" model="ir.actions.act_window">
+      <field name="name">Nuevo Alquiler</field>
+      <field name="res_model">videoclub.alquiler_aux</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+    <!-- MENU -->
+    <menuitem name="Nuevo Alquiler"
+              id="menu_wizard_alquiler"
+              parent="videoclub.menu_root"
+              action="action_alquiler_aux"
+              sequence="99"/>
+
+  </data>
+</odoo>

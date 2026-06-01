@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+    <!--Arbol-->
+        <record id="videoclub.cliente_list" model="ir.ui.view">
+            <field name="name">Videoclub Clientes</field>
+            <field name="model">videoclub.cliente</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="telefono"/>
+                    <field name="email"/>
+                    <field name="alquiler_ids"/>
+                </list>
+            </field>
+        </record>
+    <!-- Form -->
+        <record id="videoclub_cliente_form" model="ir.ui.view">
+            <field name="name">videoclub cliente form</field>
+            <field name="model">videoclub.cliente</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group string="Datos personales">
+                                <field name="name"/>
+                                <field name="telefono" invisible="not email"/>
+                                <field name="email" widget="email"/>
+                            </group>
+                            <group string="Estadísticas">
+                                <!-- Ocultar si no es admin -->
+                                <field name="alquiler_ids"
+                                    invisible="not context.get('show_alquileres')"
+                                    groups="videoclub.admin"/>
+                            </group>
+                        </group>
+
+                        <!-- Ocultar historial de alquileres a empleados -->
+                        <notebook>
+                            <page string="Alquileres" groups="videoclub.dependiente,videoclub.admin">
+                                <field name="alquiler_ids">
+                                <list>
+                                    <field name="pelicula_id"/>
+                                    <field name="fecha_alquiler"/>
+                                    <field name="estado"/>
+                                </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <!-- Activity -->
+        <record id="videoclub_cliente_activity" model="ir.ui.view">
+            <field name="name">videoclub cliente activity</field>
+            <field name="model">videoclub.cliente</field>
+            <field name="arch" type="xml">
+                <activity string="Actividades de Clientes">
+                    <field name="name"/>
+                    <field name="email"/>
+                    <templates>
+                        <div t-name="activity-box">
+                            <div>
+                                <field name="name" display="full"/>
+                            </div>
+                            <div>
+                                <field name="email" muted="1"/>
+                            </div>
+                        </div>
+                    </templates>
+                </activity>
+            </field>
+        </record>
+
+    </data>
+</odoo>

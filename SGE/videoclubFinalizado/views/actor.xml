@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="videoclub.actor_list" model="ir.ui.view">
+            <field name="name">Videoclub Actores</field>
+            <field name="model">videoclub.actor</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="nacionalidad"/>
+                    <field name="fecha_nacimiento"/>
+                    <field name="pelicula_ids"/>
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>
